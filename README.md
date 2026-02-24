@@ -56,7 +56,7 @@ Este projeto tem como finalidade:
 
 2. Abra o arquivo `index.html` no navegador.
 
-Não é necessário servidor backend, pois trata-se de uma versão estática para demonstração de layout e estrutura.
+Não é necessário servidor backend, pois trata-se de uma versão estática para demonstração de layout, estrutura e versionamento de código.
 
 ---
 
