@@ -1,81 +1,228 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Pedido de Compra</title>
-    <!-- Bootstrap 5 CSS via CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novo Pedido de Compra</title>
+
+<style>
+:root{
+  --primary:#2563eb;
+  --primary-dark:#1e40af;
+  --bg:#f1f5f9;
+  --card:#ffffff;
+  --border:#e2e8f0;
+  --text:#1e293b;
+  --muted:#64748b;
+  --radius:12px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+  background:var(--bg);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.container{
+  width:100%;
+  max-width:500px;
+}
+
+.card{
+  background:var(--card);
+  padding:30px;
+  border-radius:var(--radius);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  border:1px solid var(--border);
+}
+
+.header{
+  margin-bottom:25px;
+}
+
+.header h1{
+  font-size:22px;
+  color:var(--text);
+}
+
+.header p{
+  font-size:14px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.form-group{
+  margin-bottom:18px;
+}
+
+label{
+  font-size:13px;
+  font-weight:600;
+  color:var(--text);
+  display:block;
+  margin-bottom:6px;
+}
+
+input, select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  font-size:14px;
+  transition:.2s;
+}
+
+input:focus, select:focus{
+  border-color:var(--primary);
+  outline:none;
+  box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.status{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:5px;
+}
+
+.status label{
+  font-weight:500;
+  font-size:13px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.status input{
+  display:none;
+}
+
+.status input:checked + label{
+  background:var(--primary);
+  color:#fff;
+  border-color:var(--primary);
+}
+
+.footer{
+  margin-top:25px;
+  display:flex;
+  gap:10px;
+}
+
+button{
+  flex:1;
+  padding:11px;
+  border-radius:8px;
+  border:none;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.btn-secondary{
+  background:#e2e8f0;
+  color:#334155;
+}
+
+.btn-secondary:hover{
+  background:#cbd5e1;
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:var(--primary-dark);
+}
+</style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2 class="mb-4">Cadastro de Pedido de Compra</h2>
 
-        <form>
-            <div class="mb-3">
-                <label for="numeroPedido" class="form-label">Número do Pedido</label>
-                <input type="text"
-                       class="form-control"
-                       id="numeroPedido"
-                       placeholder="Ex: PC-0001"
-                       required>
-            </div>
+<div class="container">
+  <div class="card">
 
-            <div class="mb-3">
-                <label for="dataPedido" class="form-label">Data do Pedido</label>
-                <input type="date"
-                       class="form-control"
-                       id="dataPedido"
-                       required>
-            </div>
-
-            <div class="mb-3">
-                <label for="fornecedorPedido" class="form-label">Fornecedor</label>
-                <select class="form-select" id="fornecedorPedido" required>
-                    <option selected disabled value="">Selecione...</option>
-                    <option value="1">Fornecedor 1</option>
-                    <option value="2">Fornecedor 2</option>
-                    <option value="3">Fornecedor 3</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="valorTotal" class="form-label">Valor Total</label>
-                <div class="input-group">
-                    <span class="input-group-text">R$</span>
-                    <input type="number"
-                           step="0.01"
-                           class="form-control"
-                           id="valorTotal"
-                           placeholder="Ex: 1500.00"
-                           required>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <label for="statusPedido" class="form-label">Status</label>
-                <select class="form-select" id="statusPedido" required>
-                    <option selected disabled value="">Selecione...</option>
-                    <option value="ABERTO">Aberto</option>
-                    <option value="APROVADO">Aprovado</option>
-                    <option value="RECEBIDO">Recebido</option>
-                    <option value="CANCELADO">Cancelado</option>
-                </select>
-            </div>
-
-            <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-primary">
-                    Cadastrar
-                </button>
-
-                <a href="index.html" class="btn btn-secondary">
-                  Voltar
-                </a>
-            </div>
-        </form>
+    <div class="header">
+      <h1>Novo Pedido de Compra</h1>
+      <p>Preencha as informações abaixo para registrar o pedido.</p>
     </div>
 
-    <!-- Bootstrap 5 JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <form>
+
+      <div class="row">
+        <div class="form-group">
+          <label>Nº do Pedido</label>
+          <input type="text" placeholder="PC-0001">
+        </div>
+
+        <div class="form-group">
+          <label>Data</label>
+          <input type="date">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Fornecedor</label>
+        <select>
+          <option>Selecione o fornecedor...</option>
+          <option>Fornecedor Alpha Ltda.</option>
+          <option>Fornecedor Beta S.A.</option>
+          <option>Fornecedor Gamma ME</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Valor Total (R$)</label>
+        <input type="number" step="0.01" placeholder="0.00">
+      </div>
+
+      <div class="form-group">
+        <label>Status do Pedido</label>
+        <div class="status">
+          <input type="radio" name="status" id="aberto" checked>
+          <label for="aberto">Aberto</label>
+
+          <input type="radio" name="status" id="aprovado">
+          <label for="aprovado">Aprovado</label>
+
+          <input type="radio" name="status" id="recebido">
+          <label for="recebido">Recebido</label>
+
+          <input type="radio" name="status" id="cancelado">
+          <label for="cancelado">Cancelado</label>
+        </div>
+      </div>
+
+      <div class="footer">
+        <button type="reset" class="btn-secondary">Limpar</button>
+        <button type="submit" class="btn-primary">Cadastrar</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
 </body>
 </html>
